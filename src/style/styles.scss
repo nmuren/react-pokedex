@@ -25,6 +25,10 @@ h6 {
   color: $primary-text-color;
 }
 
+.text-medium {
+  font-size: medium;
+}
+
 .top-navigation {
   width: 100%;
   display: flex;
@@ -34,31 +38,6 @@ h6 {
 
 .content {
   background-color: $secondary-color;
-}
-
-.styled-card {
-  &:not(.not-full-height) {
-    height: 100%;
-  }
-
-  .card-body a {
-    @extend .black-text;
-    &:hover {
-      color: #0056b3;
-      text-underline-offset: 0.1rem;
-    }
-  }
-
-  .card-title {
-    text-transform: capitalize;
-    font-family: $secondary-font;
-    font-weight: bold;
-    height: 3rem;
-  }
-
-  .card-text {
-    font-size: smaller;
-  }
 }
 
 .custom-pagination {
