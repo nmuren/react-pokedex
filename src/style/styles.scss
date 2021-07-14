@@ -1,0 +1,111 @@
+$primary-font: "Poppins", Verdana, sans-serif;
+$secondary-font: Georgia, Times, serif;
+$primary-text-color: #000000;
+$secondary-text-color: #7f8c8d;
+$primary-color: #ffffff;
+$secondary-color: #f6f7fb;
+$tertiary-color: #37bd9cff;
+
+body {
+  margin: 0;
+  background-color: $primary-color;
+  font-family: $primary-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $secondary-font;
+}
+
+.black-text {
+  color: $primary-text-color;
+}
+
+.top-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: 600;
+}
+
+.content {
+  background-color: $secondary-color;
+}
+
+.styled-card {
+  &:not(.not-full-height) {
+    height: 100%;
+  }
+
+  .card-body a {
+    @extend .black-text;
+    &:hover {
+      color: #0056b3;
+      text-underline-offset: 0.1rem;
+    }
+  }
+
+  .card-title {
+    text-transform: capitalize;
+    font-family: $secondary-font;
+    font-weight: bold;
+    height: 3rem;
+  }
+
+  .card-text {
+    font-size: smaller;
+  }
+}
+
+.custom-pagination {
+  button {
+    border: none;
+    background: none;
+    min-width: 2.5rem;
+    padding: 0 0.5rem;
+    .custom-pagination-active {
+      padding: 0 0.5rem;
+      border-bottom: 0.1rem solid $primary-text-color;
+    }
+  }
+}
+
+.custom-searcbox {
+  .form-control {
+    border-radius: 7px;
+    border: 1.5px solid $secondary-color;
+    background-color: $secondary-color;
+    height: 3rem;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .input-group-append {
+    button {
+      background-color: $secondary-color;
+      border: none;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+
+  @media (min-width: 576px) {
+    div:nth-child(2) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  img {
+    margin-right: 0.3rem;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap");
