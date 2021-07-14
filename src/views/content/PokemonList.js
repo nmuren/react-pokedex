@@ -7,28 +7,30 @@ import Spinner from "react-bootstrap/Spinner";
 import { getPokemonsList } from "service/pokemon";
 import { keyGenerator } from "utils/commonUtils";
 import StyledCard from "components/StyledCard";
+import Pagination from "components/Pagination";
 
 const ITEM_LIMIT = 12;
 
 const PokemonList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [offset] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [active, setActive] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
-
-    getPokemonsList({ offset, limit: ITEM_LIMIT })
-      .then(({ results }) => {
+    getPokemonsList({ offset: (active - 1) * ITEM_LIMIT, limit: ITEM_LIMIT })
+      .then(({ results, count }) => {
         results.forEach((element) => {
           const url = element.url.split("/");
           element.id = url[url.length - 2];
         });
         setData(results);
+        setTotalCount(count);
         setIsLoading(false);
       })
       .catch(console.error);
-  }, [offset]);
+  }, [active]);
 
   return (
     <div className="content">
@@ -50,7 +52,11 @@ const PokemonList = () => {
               >
                 <StyledCard
                   url={`/pokemon/${item.id}`}
-                  img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${item.id}.svg`}
+                  img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/${
+                    item.id < 650
+                      ? "dream-world/" + item.id + ".svg"
+                      : "official-artwork/" + item.id + ".png"
+                  }`}
                   title={item.name}
                   text={item.id}
                 />
@@ -60,6 +66,18 @@ const PokemonList = () => {
             <Col className="mt-4">No data found...</Col>
           )}
         </Row>
+        {totalCount > 0 && Math.ceil(totalCount / ITEM_LIMIT) > 1 && (
+          <Row>
+            <Col className="d-flex justify-content-center mt-4">
+              <Pagination
+                active={active}
+                total={totalCount}
+                dataPerPage={ITEM_LIMIT}
+                onChange={setActive}
+              />
+            </Col>
+          </Row>
+        )}
       </Container>
     </div>
   );

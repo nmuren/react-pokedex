@@ -11,16 +11,13 @@ const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
         <Card.Img
           variant="top"
           src={img}
-          className="pt-2"
-          width="200"
-          height="200"
+          className="pt-2 align-self-center sized-img"
         />
         <Card.Body>
           <Card.Title className="mb-3">
-            <span className="text-muted text-medium mx-1 s">{`#${text.padStart(
-              5,
-              0
-            )}`}</span>
+            <span className="text-muted text-medium mx-1 s">
+              {`#${text.padStart(3, 0)}`}
+            </span>
             {capitalizeText(title)}
           </Card.Title>
         </Card.Body>
