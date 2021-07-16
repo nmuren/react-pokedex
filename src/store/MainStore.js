@@ -4,7 +4,9 @@ import { makeAutoObservable } from "mobx";
 class MainStore {
   // observable
   itemPerPage = 12;
+
   searchKey = "";
+
   favoritePokemons = [];
 
   constructor({ storedFavoritePokemons }) {
@@ -15,6 +17,20 @@ class MainStore {
   // action
   setValue = (key, value) => {
     this[key] = value;
+  };
+
+  addFavorite = (pokemon) => {
+    this.favoritePokemons.push(pokemon);
+  };
+
+  removeFavorite = (id) => {
+    this.favoritePokemons = this.favoritePokemons.filter(
+      (pokemon) => pokemon.id !== id
+    );
+  };
+
+  clearFavorites = () => {
+    this.favoritePokemons = [];
   };
 }
 export default MainStore;
