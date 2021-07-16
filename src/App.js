@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 import Routes from "routing/Routes";
 import Header from "views/layout/Header";
@@ -15,7 +16,11 @@ function App() {
     <MainProvider store={store}>
       <Router>
         <Header />
-        <Routes />
+        <div className="content">
+          <Container className="pb-3">
+            <Routes />
+          </Container>
+        </div>
         <Footer />
       </Router>
     </MainProvider>

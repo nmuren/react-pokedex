@@ -1,20 +1,26 @@
 import React, { createContext } from "react";
 import { makeAutoObservable } from "mobx";
 
+export const MainContext = createContext(null);
+
+export const MainProvider = ({ store, children }) => (
+  <MainContext.Provider value={store}>{children}</MainContext.Provider>
+);
 class MainStore {
-  // observable
+  //#region observable
   itemPerPage = 12;
 
   searchKey = "";
 
   favoritePokemons = [];
+  //#endregion observable
 
   constructor({ storedFavoritePokemons }) {
     this.favoritePokemons = storedFavoritePokemons;
     makeAutoObservable(this);
   }
 
-  // action
+  //#region action
   setValue = (key, value) => {
     this[key] = value;
   };
@@ -32,11 +38,6 @@ class MainStore {
   clearFavorites = () => {
     this.favoritePokemons = [];
   };
+  //#endregion action
 }
 export default MainStore;
-
-export const MainContext = createContext(null);
-
-export const MainProvider = ({ store, children }) => (
-  <MainContext.Provider value={store}>{children}</MainContext.Provider>
-);

@@ -11,7 +11,6 @@ const FavoriteIcon = ({
   uncheckText = "",
   onUnchecked = () => {},
 }) => {
-  console.log("file: FavoriteIcon.js ~ line 14 ~ status", status);
   return status ? (
     <div className={`btn ${className}`} onClick={onUnchecked}>
       <img

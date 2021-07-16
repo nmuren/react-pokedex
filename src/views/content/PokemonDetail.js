@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
 import { useParams } from "react-router-dom";
 
 import {
   getPokemonByNameOrId,
   getPokemonSpeciesByNameOrId,
 } from "service/pokemon";
-import TopBar from "views/layout/TopBar";
 import { getPokemonVariant } from "utils/pokemonUtils";
 import PokemonStats from "views/content/PokemonStats";
 import LoadingSpinner from "components/LoadingSpinner";
 import PokemonAbilities from "views/content/PokemonAbilities";
+import TopBar from "views/layout/TopBar";
 
 const PokemonDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,19 +48,17 @@ const PokemonDetail = () => {
   }, [pokemonId]);
 
   return (
-    <div className="content">
-      <Container className="pb-3">
-        <TopBar />
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <>
-            <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
-            <PokemonAbilities pokemon={pokemon} />
-          </>
-        )}
-      </Container>
-    </div>
+    <>
+      <TopBar />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
+          <PokemonAbilities pokemon={pokemon} />
+        </>
+      )}
+    </>
   );
 };
 

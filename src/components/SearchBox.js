@@ -9,7 +9,7 @@ import search from "assets/img/search-alternative-icon.png";
 const SearchBox = ({
   className = "",
   placeholder = "",
-  baseUrl = "",
+  baseUrl = "/",
   value = "",
   onSearchChanged = () => {},
 }) => {
@@ -28,11 +28,9 @@ const SearchBox = ({
             }}
           />
           <InputGroup.Append>
-            <button type="button" className="h-100">
-              <Link to={`${baseUrl}`}>
-                <img src={search} alt="search" width="24" height="24" />
-              </Link>
-            </button>
+            <Link to={`${baseUrl}`} className="h-100">
+              <img src={search} alt="search" width="24" height="24" />
+            </Link>
           </InputGroup.Append>
         </InputGroup>
       </Card.Body>

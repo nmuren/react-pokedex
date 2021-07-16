@@ -30,7 +30,7 @@ const PokemonSearchList = () => {
       .then(({ results }) => {
         results.forEach((element) => {
           const url = element.url.split("/");
-          element.id = url[url.length - 2];
+          element.id = Number(url[url.length - 2]);
         });
         setData(results);
         setIsLoading(false);

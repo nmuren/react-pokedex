@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Container from "react-bootstrap/Container";
 import { observer } from "mobx-react-lite";
 
 import PokemonList from "views/content/PokemonList";
@@ -11,12 +10,10 @@ const PokemonListContainer = () => {
   const store = useContext(MainContext);
 
   return (
-    <div className="content">
-      <Container className="pb-3">
-        <TopBar />
-        {store.searchKey ? <PokemonSearchList /> : <PokemonList />}
-      </Container>
-    </div>
+    <>
+      <TopBar />
+      {store.searchKey ? <PokemonSearchList /> : <PokemonList />}
+    </>
   );
 };
 
