@@ -9,7 +9,6 @@ import { getPokemonVariant } from "utils/pokemonUtils";
 import PokemonStats from "views/content/PokemonStats";
 import LoadingSpinner from "components/LoadingSpinner";
 import PokemonAbilities from "views/content/PokemonAbilities";
-import TopBar from "views/layout/TopBar";
 
 const PokemonDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,17 +46,12 @@ const PokemonDetail = () => {
     }
   }, [pokemonId]);
 
-  return (
+  return isLoading ? (
+    <LoadingSpinner />
+  ) : (
     <>
-      <TopBar />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <>
-          <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
-          <PokemonAbilities pokemon={pokemon} />
-        </>
-      )}
+      <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
+      <PokemonAbilities pokemon={pokemon} />
     </>
   );
 };

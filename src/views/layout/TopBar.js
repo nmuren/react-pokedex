@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
 import { MainContext } from "store/MainStore";
@@ -13,11 +13,12 @@ import favoriteFilled from "assets/img/favorite-filled-icon.png";
 
 const TopBar = () => {
   const store = useContext(MainContext);
+  let { pathname } = useLocation();
 
   return (
     <Row className="pt-3">
       <Col>
-        <Card className="">
+        <Card>
           <Card.Body className="p-0">
             <Link to="/myPokemons" className="h-100 w-100 btn">
               <img

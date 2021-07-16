@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Routes from "routing/Routes";
 import Header from "views/layout/Header";
 import Footer from "views/layout/Footer";
+import TopBar from "views/layout/TopBar";
 import MainStore, { MainProvider } from "store/MainStore";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <div className="content">
           <Container className="pb-3">
+            <TopBar />
             <Routes />
           </Container>
         </div>
