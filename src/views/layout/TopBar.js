@@ -33,19 +33,19 @@ const TopBar = () => {
             <span>My Pokémons</span>
           </Link>
         ) : (
-          <div>
+          <div className="h-100 d-flex gap-2">
             <Link
               to="/"
-              className="h-100 btn d-flex justify-content-center align-items-center topbar-button"
+              className=" w-100 btn d-flex justify-content-center align-items-center topbar-button"
             >
               <img src={leftArrow} alt="go back" width="30" className="mx-1" />
-              <span>Go back to main</span>
+              <span>Go back</span>
             </Link>
 
             {store.favoritePokemons.length > 0 && (
-              <Link
-                to="/"
-                className="h-100 btn d-flex justify-content-center align-items-center topbar-button"
+              <div
+                onClick={store.clearFavorites}
+                className=" w-100 btn d-flex justify-content-center align-items-center topbar-button"
               >
                 <img
                   src={remove}
@@ -53,8 +53,8 @@ const TopBar = () => {
                   width="30"
                   height="30"
                 />{" "}
-                <span>Remove all favorites</span>
-              </Link>
+                <span>Clear all</span>
+              </div>
             )}
           </div>
         )}
@@ -62,21 +62,25 @@ const TopBar = () => {
       <Col className="d-flex justify-content-end ">
         <DropdownCard
           className="mx-4 p-2"
-          text="Items per page:"
+          text="Items:"
           value={store.itemPerPage}
           itemList={ITEM_PER_PAGE_LIST}
           onClick={(event) => {
             store.setValue("itemPerPage", event.target.innerText);
           }}
         />
-        <SearchBox
-          className="p-2"
-          onSearchChanged={(searchKey) => {
-            store.setValue("searchKey", searchKey);
-          }}
-          value={store.searchKey}
-          placeholder="Pokemon ID or Name..."
-        />
+        {pathname !== "/myPokemons" ? (
+          <SearchBox
+            className="p-2"
+            onSearchChanged={(searchKey) => {
+              store.setValue("searchKey", searchKey);
+            }}
+            value={store.searchKey}
+            placeholder="Pokemon ID or Name..."
+          />
+        ) : (
+          <></>
+        )}
       </Col>
     </Row>
   );
