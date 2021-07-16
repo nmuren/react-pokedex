@@ -5,9 +5,9 @@ import Spinner from "react-bootstrap/Spinner";
 
 import { getPokemonsList } from "service/pokemon";
 import { keyGenerator } from "utils/commonUtils";
-import StyledCard from "components/StyledCard";
 import Pagination from "components/Pagination";
 import { ITEM_LIMIT_PER_PAGE } from "contants/listContants";
+import PokemonCard from "views/content/PokemonCard";
 
 const PokemonList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,25 +42,7 @@ const PokemonList = () => {
           </Col>
         ) : data.length > 0 ? (
           data.map((item) => (
-            <Col
-              key={item.id || keyGenerator()}
-              className="mt-4"
-              xs={12}
-              sm={6}
-              md={4}
-              xl={3}
-            >
-              <StyledCard
-                url={`/pokemon/${item.id}`}
-                img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/${
-                  item.id < 650
-                    ? "dream-world/" + item.id + ".svg"
-                    : "official-artwork/" + item.id + ".png"
-                }`}
-                title={item.name}
-                text={item.id}
-              />
-            </Col>
+            <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
           ))
         ) : (
           <Col className="mt-4">No data found...</Col>

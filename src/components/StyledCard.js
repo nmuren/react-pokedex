@@ -2,8 +2,6 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-import { capitalizeText } from "utils/commonUtils";
-
 const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
   return (
     <Link to={url}>
@@ -15,10 +13,8 @@ const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
         />
         <Card.Body>
           <Card.Title className="mb-3">
-            <span className="text-muted text-medium mx-1 s">
-              {`#${text.padStart(3, 0)}`}
-            </span>
-            {capitalizeText(title)}
+            <span className="text-muted text-medium mx-1 s">{text}</span>
+            {title}
           </Card.Title>
         </Card.Body>
       </Card>
