@@ -13,7 +13,6 @@ function App() {
   const storedFavoritePokemons =
     JSON.parse(localStorage.getItem("favoritePokemons")) || [];
   const store = new MainStore({ storedFavoritePokemons });
-  window.store = store;
 
   reaction(
     () => JSON.stringify(store.favoritePokemons),

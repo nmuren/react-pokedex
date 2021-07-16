@@ -1,10 +1,18 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
+  const { pathname } = useLocation();
+  const history = useHistory();
+
   return (
-    <Link to={url}>
+    <Link
+      to={url}
+      onClick={() => {
+        history.push(pathname);
+      }}
+    >
       <Card className="h-100">
         <Card.Img
           variant="top"

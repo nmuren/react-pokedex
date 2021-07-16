@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import search from "assets/img/search-alternative-icon.png";
 
@@ -13,6 +13,9 @@ const SearchBox = ({
   value = "",
   onSearchChanged = () => {},
 }) => {
+  const { pathname } = useLocation();
+  const history = useHistory();
+
   return (
     <Card className={className}>
       <Card.Body className="p-0">
@@ -28,7 +31,13 @@ const SearchBox = ({
             }}
           />
           <InputGroup.Append>
-            <Link to={`${baseUrl}`} className="h-100">
+            <Link
+              to={`${baseUrl}`}
+              className="h-100"
+              onClick={() => {
+                history.push(pathname);
+              }}
+            >
               <img src={search} alt="search" width="24" height="24" />
             </Link>
           </InputGroup.Append>

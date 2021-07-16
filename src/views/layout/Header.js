@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import logo from "assets/img/logo.png";
 import { MainContext } from "store/MainStore";
 
 const Header = () => {
   const store = useContext(MainContext);
+  const { pathname } = useLocation();
+  const history = useHistory();
 
   return (
     <Container fluid>
@@ -15,6 +17,7 @@ const Header = () => {
           to="/"
           onClick={() => {
             store.setValue("searchKey", "");
+            history.push(pathname);
           }}
         >
           <img src={logo} alt="logo" />

@@ -15,7 +15,6 @@ const PokemonDetail = () => {
   const [pokemon, setPokemon] = useState({});
   const [pokemonVariant, setPokemonVariant] = useState();
   const { pokemonId } = useParams();
-  window.datax = pokemon;
 
   useEffect(() => {
     if (pokemonId) {
