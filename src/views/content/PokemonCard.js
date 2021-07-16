@@ -15,7 +15,7 @@ const PokemonCard = ({ pokemon }) => {
     <Col className="mt-3 pokemon-card" xs={12} sm={6} md={4} xl={3}>
       <FavoriteIcon
         className="pokemon-card-favorite"
-        status={store.favoritePokemons.some((item) => item.id == pokemon.id)}
+        status={store.favoritePokemons.some((item) => item.id === pokemon.id)}
         onChecked={() => {
           const obj = {
             id: pokemon.id,
@@ -31,7 +31,7 @@ const PokemonCard = ({ pokemon }) => {
         url={`/pokemon/${pokemon.id}`}
         img={getImageSource(pokemon.id)}
         title={readableTextFormat(pokemon.name)}
-        text={`#${pokemon.id.padStart(3, 0)}`}
+        text={`#${pokemon.id.toString().padStart(3, 0)}`}
       />
     </Col>
   );

@@ -9,6 +9,7 @@ import MainStore, { MainProvider } from "store/MainStore";
 function App() {
   const storedFavoritePokemons = localStorage.getItem("favoritePokemons") || [];
   const store = new MainStore({ storedFavoritePokemons });
+  window.store = store;
 
   return (
     <MainProvider store={store}>

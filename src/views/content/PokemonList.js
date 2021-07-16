@@ -26,7 +26,7 @@ const PokemonList = () => {
       .then(({ results, count }) => {
         results.forEach((element) => {
           const url = element.url.split("/");
-          element.id = url[url.length - 2];
+          element.id = Number(url[url.length - 2]);
         });
         setData(results);
         setTotalCount(count);

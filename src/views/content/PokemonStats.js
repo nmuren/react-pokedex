@@ -23,7 +23,7 @@ const PokemonStats = ({ pokemon = {}, pokemonVariant }) => {
           <h4 className="mb-0 h-100 ">{readableTextFormat(pokemon.name)}</h4>
         </div>
         <FavoriteIcon
-          status={store.favoritePokemons.some((item) => item.id == pokemon.id)}
+          status={store.favoritePokemons.some((item) => item.id === pokemon.id)}
           checkText="Add to favorites"
           onChecked={() => {
             const obj = {
