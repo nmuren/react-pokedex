@@ -4,8 +4,12 @@ export const getPokemonsList = (interval) => {
   return Pokedex.getPokemonsList(interval);
 };
 
-export const getPokemonByNameOrID = (criteria) => {
+export const getPokemonByNameOrId = (criteria) => {
   return Pokedex.getPokemonByName(criteria);
+};
+
+export const getPokemonSpeciesByNameOrId = (criteria) => {
+  return Pokedex.getPokemonSpeciesByName(criteria);
 };
 
 export const getImageSource = (id) => {

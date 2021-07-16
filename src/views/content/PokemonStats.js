@@ -40,6 +40,7 @@ const PokemonStats = ({ pokemon = {}, pokemonVariant }) => {
                   variant={pokemonVariant}
                 ></StatBar>
               ))}
+              <p className="mt-3">{pokemon.flavorText}</p>
             </Col>
           </Row>
         </Card.Body>

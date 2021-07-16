@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { useParams } from "react-router-dom";
 
-import { getPokemonByNameOrID } from "service/pokemon";
+import {
+  getPokemonByNameOrId,
+  getPokemonSpeciesByNameOrId,
+} from "service/pokemon";
 import TopBar from "views/layout/TopBar";
 import { getPokemonVariant } from "utils/pokemonUtils";
 import PokemonStats from "./PokemonStats";
@@ -17,10 +20,27 @@ const PokemonDetail = () => {
 
   useEffect(() => {
     if (pokemonId) {
-      getPokemonByNameOrID(pokemonId)
-        .then((res) => {
-          setPokemon(res);
-          setPokemonVariant(getPokemonVariant(res.types[0].type.name));
+      const generalDataPromise = new Promise((resolve) => {
+        getPokemonByNameOrId(pokemonId).then((res) => {
+          resolve(res);
+        });
+      });
+
+      const speciesDataPromise = new Promise((resolve) => {
+        getPokemonSpeciesByNameOrId(pokemonId).then((res) => {
+          resolve(res);
+        });
+      });
+
+      Promise.all([generalDataPromise, speciesDataPromise])
+        .then(([generalData, speciesData]) => {
+          const resultData = generalData;
+          resultData.flavorText = speciesData.flavor_text_entries.find(
+            (entry) => entry.language.name === "en"
+          ).flavor_text;
+
+          setPokemon(resultData);
+          setPokemonVariant(getPokemonVariant(resultData.types[0].type.name));
           setIsLoading(false);
         })
         .catch(console.error);
@@ -35,6 +55,7 @@ const PokemonDetail = () => {
           <LoadingSpinner />
         ) : (
           <>
+            <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
             <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
           </>
         )}
