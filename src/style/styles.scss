@@ -39,6 +39,11 @@ h6 {
   background-color: $secondary-color;
 }
 
+.pokemon-card a {
+  text-decoration: none;
+  color: $bootstrap-text-color;
+}
+
 .custom-pagination {
   button {
     border: none;

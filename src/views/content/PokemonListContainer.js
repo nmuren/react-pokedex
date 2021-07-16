@@ -12,7 +12,7 @@ const PokemonListContainer = () => {
 
   return (
     <div className="content">
-      <Container className="pb-4">
+      <Container className="pb-3">
         <TopBar />
         {store.searchKey ? <PokemonSearchList /> : <PokemonList />}
       </Container>

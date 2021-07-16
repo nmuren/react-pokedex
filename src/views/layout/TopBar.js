@@ -13,7 +13,7 @@ const TopBar = () => {
 
   return (
     <Row>
-      <Col className="d-flex justify-content-end mt-4">
+      <Col className="d-flex justify-content-end mt-3">
         <DropdownCard
           className="mx-4"
           text="Items per page:"

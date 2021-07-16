@@ -39,7 +39,7 @@ const PokemonList = () => {
     <>
       <Row>
         {isLoading ? (
-          <Col className="d-flex justify-content-center mt-4">
+          <Col className="d-flex justify-content-center mt-3">
             <Spinner animation="border" role="status" />
           </Col>
         ) : data.length > 0 ? (
@@ -47,7 +47,7 @@ const PokemonList = () => {
             <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
           ))
         ) : (
-          <Col className="mt-4">No data found...</Col>
+          <Col className="mt-3">No data found...</Col>
         )}
       </Row>
       {totalCount > 0 && Math.ceil(totalCount / store.itemPerPage) > 1 && (

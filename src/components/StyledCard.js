@@ -13,7 +13,7 @@ const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
         />
         <Card.Body>
           <Card.Title className="mb-3">
-            <span className="text-muted text-medium mx-1 s">{text}</span>
+            <span className="text-muted text-medium mx-1 ">{text}</span>
             {title}
           </Card.Title>
         </Card.Body>

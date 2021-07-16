@@ -42,7 +42,7 @@ const PokemonSearchList = () => {
     <>
       <Row>
         {isLoading ? (
-          <Col className="d-flex justify-content-center mt-4">
+          <Col className="d-flex justify-content-center mt-3">
             <Spinner animation="border" role="status" />
           </Col>
         ) : filteredData.length > 0 ? (
