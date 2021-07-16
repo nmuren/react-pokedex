@@ -8,8 +8,7 @@ import { readableTextFormat } from "utils/commonUtils";
 import { getImageSource } from "service/pokemon";
 import StatBar from "components/StatBar";
 import { MainContext } from "store/MainStore";
-import favorite from "assets/img/favorite-icon.png";
-import favoriteFilled from "assets/img/favorite-filled-icon.png";
+import FavoriteIcon from "components/FavoriteIcon";
 
 const PokemonStats = ({ pokemon = {}, pokemonVariant }) => {
   const store = useContext(MainContext);
@@ -23,31 +22,21 @@ const PokemonStats = ({ pokemon = {}, pokemonVariant }) => {
           </span>
           <h4 className="mb-0 h-100 ">{readableTextFormat(pokemon.name)}</h4>
         </div>
-        {store.favoritePokemons.some((item) => item.id === pokemon.id) ? (
-          <div
-            className="btn"
-            onClick={() => {
-              store.removeFavorite(pokemon.id);
-            }}
-          >
-            <img src={favoriteFilled} alt="remove from favorite" width="30" />{" "}
-            Remove from your favorites
-          </div>
-        ) : (
-          <div
-            className="btn"
-            onClick={() => {
-              const obj = {
-                id: pokemon.id,
-                name: pokemon.name,
-              };
-              store.addFavorite(obj);
-            }}
-          >
-            <img src={favorite} alt="add to favorite" width="30" /> Add to your
-            favorites
-          </div>
-        )}
+        <FavoriteIcon
+          status={store.favoritePokemons.some((item) => item.id == pokemon.id)}
+          checkText="Add to favorites"
+          onChecked={() => {
+            const obj = {
+              id: pokemon.id,
+              name: pokemon.name,
+            };
+            store.addFavorite(obj);
+          }}
+          uncheckText="Remove from favorites"
+          onUnchecked={() => {
+            store.removeFavorite(pokemon.id);
+          }}
+        />
       </Card.Header>
       <Card.Body>
         <Row className="d-flex align-items-center">
