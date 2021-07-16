@@ -12,7 +12,7 @@ const SearchBox = ({
 }) => {
   return (
     <Card className={className}>
-      <Card.Body>
+      <Card.Body className="p-0">
         <InputGroup className="custom-searcbox">
           <Form.Control
             type="search"

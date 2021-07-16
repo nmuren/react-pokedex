@@ -12,10 +12,11 @@ const TopBar = () => {
   const store = useContext(MainContext);
 
   return (
-    <Row>
-      <Col className="d-flex justify-content-end mt-3">
+    <Row className="pt-3">
+      <Col>asdasd</Col>
+      <Col className="d-flex justify-content-end ">
         <DropdownCard
-          className="mx-4"
+          className="mx-4 p-2"
           text="Items per page:"
           value={store.itemPerPage}
           itemList={ITEM_PER_PAGE_LIST}
@@ -24,6 +25,7 @@ const TopBar = () => {
           }}
         />
         <SearchBox
+          className="p-2"
           onSearchChanged={(searchKey) => {
             store.setValue("searchKey", searchKey);
           }}

@@ -12,7 +12,7 @@ const DropdownCard = ({
 }) => {
   return (
     <Card className={className}>
-      <Card.Body className="custom-dropdown">
+      <Card.Body className="custom-dropdown p-0">
         {text}
         <Dropdown>
           <Dropdown.Toggle id="dropdown-toggle">{value}</Dropdown.Toggle>
