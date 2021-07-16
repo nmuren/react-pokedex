@@ -8,8 +8,9 @@ import {
 } from "service/pokemon";
 import TopBar from "views/layout/TopBar";
 import { getPokemonVariant } from "utils/pokemonUtils";
-import PokemonStats from "./PokemonStats";
+import PokemonStats from "views/content/PokemonStats";
 import LoadingSpinner from "components/LoadingSpinner";
+import PokemonAbilities from "views/content/PokemonAbilities";
 
 const PokemonDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,9 +36,9 @@ const PokemonDetail = () => {
       Promise.all([generalDataPromise, speciesDataPromise])
         .then(([generalData, speciesData]) => {
           const resultData = generalData;
-          resultData.flavorText = speciesData.flavor_text_entries.find(
-            (entry) => entry.language.name === "en"
-          ).flavor_text;
+          resultData.flavorText = speciesData.flavor_text_entries
+            .find((entry) => entry.language.name === "en")
+            .flavor_text.replaceAll("\f", " ");
 
           setPokemon(resultData);
           setPokemonVariant(getPokemonVariant(resultData.types[0].type.name));
@@ -49,14 +50,14 @@ const PokemonDetail = () => {
 
   return (
     <div className="content">
-      <Container className="pb-4">
+      <Container className="pb-3">
         <TopBar />
         {isLoading ? (
           <LoadingSpinner />
         ) : (
           <>
             <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
-            <PokemonStats pokemon={pokemon} pokemonVariant={pokemonVariant} />
+            <PokemonAbilities pokemon={pokemon} />
           </>
         )}
       </Container>

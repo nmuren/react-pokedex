@@ -46,7 +46,7 @@ const PokemonList = () => {
               <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
             ))
           ) : (
-            <Col className="mt-3">No data found...</Col>
+            <Col className="mt-4">No data found...</Col>
           )}
         </Row>
       )}
