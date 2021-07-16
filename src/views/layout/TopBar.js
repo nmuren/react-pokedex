@@ -29,6 +29,7 @@ const TopBar = () => {
           onSearchChanged={(searchKey) => {
             store.setValue("searchKey", searchKey);
           }}
+          value={store.searchKey}
           placeholder="Pokemon ID or Name..."
         />
       </Col>
