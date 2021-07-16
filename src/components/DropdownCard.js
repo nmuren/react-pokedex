@@ -18,13 +18,17 @@ const DropdownCard = ({
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {itemList.map((item) => (
-              <Dropdown.Item onClick={onClick}>{item}</Dropdown.Item>
+              <Dropdown.Item onClick={onClick} key={item}>
+                {item}
+              </Dropdown.Item>
             ))}
             {separatedItemList.length > 0 && (
               <>
                 <Dropdown.Divider />
                 {separatedItemList.map((item) => (
-                  <Dropdown.Item onClick={onClick}>{item}</Dropdown.Item>
+                  <Dropdown.Item onClick={onClick} key={item}>
+                    {item}
+                  </Dropdown.Item>
                 ))}
               </>
             )}

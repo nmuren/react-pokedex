@@ -1,22 +1,27 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
+import { observer } from "mobx-react-lite";
 
 import { getPokemonsList } from "service/pokemon";
 import { isArrayContains, keyGenerator } from "utils/commonUtils";
 import Pagination from "components/Pagination";
-import { ITEM_LIMIT_PER_PAGE } from "contants/listContants";
-import PokemonCard from "./PokemonCard";
+import PokemonCard from "views/content/PokemonCard";
+import { MainContext } from "store/MainStore";
 
-const PokemonSearchList = ({ searchKey = "" }) => {
+const PokemonSearchList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [active, setActive] = useState(1);
+  const store = useContext(MainContext);
 
   const filteredData = useMemo(
-    () => data.filter(({ name, id }) => isArrayContains(searchKey, [name, id])),
-    [searchKey, data]
+    () =>
+      data.filter(({ name, id }) =>
+        isArrayContains(store.searchKey, [name, id])
+      ),
+    [store.searchKey, data]
   );
 
   useEffect(() => {
@@ -42,10 +47,7 @@ const PokemonSearchList = ({ searchKey = "" }) => {
           </Col>
         ) : filteredData.length > 0 ? (
           filteredData
-            .slice(
-              (active - 1) * ITEM_LIMIT_PER_PAGE,
-              active * ITEM_LIMIT_PER_PAGE
-            )
+            .slice((active - 1) * store.itemPerPage, active * store.itemPerPage)
             .map((item) => (
               <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
             ))
@@ -54,13 +56,13 @@ const PokemonSearchList = ({ searchKey = "" }) => {
         )}
       </Row>
       {filteredData.length > 0 &&
-        Math.ceil(filteredData.length / ITEM_LIMIT_PER_PAGE) > 1 && (
+        Math.ceil(filteredData.length / store.itemPerPage) > 1 && (
           <Row>
             <Col className="d-flex justify-content-center mt-4">
               <Pagination
                 active={active}
                 total={filteredData.length}
-                dataPerPage={ITEM_LIMIT_PER_PAGE}
+                dataPerPage={store.itemPerPage}
                 onChange={setActive}
               />
             </Col>
@@ -70,4 +72,4 @@ const PokemonSearchList = ({ searchKey = "" }) => {
   );
 };
 
-export default PokemonSearchList;
+export default observer(PokemonSearchList);
