@@ -8,3 +8,9 @@ export const capitalizeText = (text) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
+
+export const isArrayContains = (searchKey, searchArray) => {
+  const regex = new RegExp(searchKey, "i");
+  const searhString = searchArray.join("|");
+  return regex.test(searhString);
+};

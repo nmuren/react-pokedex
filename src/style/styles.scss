@@ -62,10 +62,10 @@ h6 {
     }
   }
   .input-group-append {
-    button {
-      background-color: $secondary-color;
-      border: none;
-    }
+    background-color: $secondary-color;
+    border: none;
+    display: flex;
+    align-items: center;
   }
 }
 

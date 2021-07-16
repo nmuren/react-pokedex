@@ -4,23 +4,41 @@ import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 
 import { getPokemonsList } from "service/pokemon";
-import { keyGenerator } from "utils/commonUtils";
+import { isArrayContains, keyGenerator } from "utils/commonUtils";
 import StyledCard from "components/StyledCard";
 import Pagination from "components/Pagination";
 import { ITEM_LIMIT_PER_PAGE } from "contants/listContants";
 
-const PokemonList = () => {
+const PokemonSearchList = ({ searchKey = "" }) => {
   const [isLoading, setIsLoading] = useState(true);
+  console.debug(
+    "file: PokemonSearchList.js ~ line 100 ~ PokemonSearchList ~ PokemonSearchList"
+  );
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [pageddData, setPageddData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [active, setActive] = useState(1);
 
   useEffect(() => {
+    const newDataList = data.filter(({ name, id }) =>
+      isArrayContains(searchKey, [name, id])
+    );
+    setFilteredData(newDataList);
+    setTotalCount(newDataList.length);
+  }, [searchKey, data]);
+
+  useEffect(() => {
+    const newDataList = filteredData.slice(
+      (active - 1) * ITEM_LIMIT_PER_PAGE,
+      active * ITEM_LIMIT_PER_PAGE
+    );
+    setPageddData(newDataList);
+  }, [active, filteredData]);
+
+  useEffect(() => {
     setIsLoading(true);
-    getPokemonsList({
-      offset: (active - 1) * ITEM_LIMIT_PER_PAGE,
-      limit: ITEM_LIMIT_PER_PAGE,
-    })
+    getPokemonsList()
       .then(({ results, count }) => {
         results.forEach((element) => {
           const url = element.url.split("/");
@@ -31,7 +49,7 @@ const PokemonList = () => {
         setIsLoading(false);
       })
       .catch(console.error);
-  }, [active]);
+  }, []);
 
   return (
     <>
@@ -40,8 +58,8 @@ const PokemonList = () => {
           <Col className="d-flex justify-content-center mt-4">
             <Spinner animation="border" role="status" />
           </Col>
-        ) : data.length > 0 ? (
-          data.map((item) => (
+        ) : pageddData.length > 0 ? (
+          pageddData.map((item) => (
             <Col
               key={item.id || keyGenerator()}
               className="mt-4"
@@ -82,4 +100,4 @@ const PokemonList = () => {
   );
 };
 
-export default PokemonList;
+export default PokemonSearchList;

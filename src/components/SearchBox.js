@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Link } from "react-router-dom";
 
-import search from "assets/img/search-icon.png";
+import search from "assets/img/search-alternative-icon.png";
 
-const SearchBox = ({ baseUrl = "", className = "", placeholder = "" }) => {
-  const [searchText, setSearchText] = useState("");
-
+const SearchBox = ({
+  className = "",
+  placeholder = "",
+  onSearchChanged = () => {},
+}) => {
   return (
     <Card className={className}>
       <Card.Body>
@@ -19,15 +20,11 @@ const SearchBox = ({ baseUrl = "", className = "", placeholder = "" }) => {
             autoComplete="off"
             spellCheck="false"
             onChange={(event) => {
-              setSearchText(event.target.value);
+              onSearchChanged(event.target.value);
             }}
           />
           <InputGroup.Append>
-            <button type="button">
-              <Link to={`${baseUrl}/${searchText}`}>
-                <img src={search} alt="search" width="24" height="24" />
-              </Link>
-            </button>
+            <img src={search} alt="search" width="24" height="24" />
           </InputGroup.Append>
         </InputGroup>
       </Card.Body>

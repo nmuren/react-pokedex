@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import PokemonList from "views/content/PokemonList";
+import Pokemons from "views/content/Pokemons";
 
 const Routes = () => (
   <Switch>
     <Route path="/">
-      <PokemonList />
+      <Pokemons />
     </Route>
     <Redirect to="/" />
   </Switch>
