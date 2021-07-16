@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import { observer } from "mobx-react-lite";
 
 import { MainContext } from "store/MainStore";
-import { INFINITE_SCROLL, ITEM_PER_PAGE_LIST } from "contants/listContants";
+import { ITEM_PER_PAGE_LIST } from "contants/listContants";
 import DropdownCard from "components/DropdownCard";
 import SearchBox from "components/SearchBox";
 
@@ -16,9 +16,9 @@ const TopBar = () => {
       <Col className="d-flex justify-content-end mt-4">
         <DropdownCard
           className="mx-4"
+          text="Items per page:"
           value={store.itemPerPage}
           itemList={ITEM_PER_PAGE_LIST}
-          separatedItemList={[INFINITE_SCROLL]}
           onClick={(event) => {
             store.setValue("itemPerPage", event.target.innerText);
           }}

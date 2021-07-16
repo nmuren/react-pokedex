@@ -4,18 +4,18 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 const DropdownCard = ({
   className = "",
-  value = "Item per page",
+  text = "",
+  value = "12",
   itemList = [],
   separatedItemList = [],
   onClick = () => {},
 }) => {
   return (
     <Card className={className}>
-      <Card.Body>
+      <Card.Body className="custom-dropdown">
+        {text}
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {value}
-          </Dropdown.Toggle>
+          <Dropdown.Toggle id="dropdown-toggle">{value}</Dropdown.Toggle>
           <Dropdown.Menu>
             {itemList.map((item) => (
               <Dropdown.Item onClick={onClick} key={item}>

@@ -2,6 +2,7 @@ $primary-font: "Poppins", Verdana, sans-serif;
 $secondary-font: Georgia, Times, serif;
 $primary-text-color: #000000;
 $secondary-text-color: #7f8c8d;
+$bootstrap-text-color: #212529;
 $primary-color: #ffffff;
 $secondary-color: #f6f7fb;
 $tertiary-color: #37bd9cff;
@@ -66,6 +67,21 @@ h6 {
     border: none;
     display: flex;
     align-items: center;
+  }
+}
+
+.custom-dropdown {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  #dropdown-toggle {
+    color: $bootstrap-text-color;
+    border: 1.5px solid $secondary-color;
+    background-color: $secondary-color;
+    height: 3rem;
+    &:focus {
+      box-shadow: none;
+    }
   }
 }
 
