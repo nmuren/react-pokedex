@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import logo from "assets/img/logo.png";
+import logo from "assets/img/logo.svg";
 import { MainContext } from "store/MainStore";
 
 const Header = () => {
