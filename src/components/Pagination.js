@@ -1,37 +1,41 @@
 import React, { useMemo } from "react";
-import { keyGenerator } from "utils/commonUtils";
+import ReactPaginate from "react-paginate";
 
-const Pagination = ({ active, total = 0, dataPerPage = 1, onChange }) => {
+const Pagination = ({
+  active = 1,
+  total = 0,
+  dataPerPage = 1,
+  marginPagesDisplayed = 2,
+  pageRangeDisplayed = 5,
+  onChange,
+}) => {
   const pageCount = useMemo(
     () => Math.ceil(total / Math.max(1, dataPerPage)),
     [total, dataPerPage]
   );
 
-  const handlePageChange = (event) => {
-    onChange(Number.parseInt(event.target.innerText));
+  const handlePageChange = ({ selected }) => {
+    onChange(selected + 1);
   };
 
   return (
-    <div className="custom-pagination">
-      {pageCount &&
-        [...Array(pageCount).keys()].map((page) => (
-          <button
-            type="button"
-            className="mb-3"
-            onClick={handlePageChange}
-            key={keyGenerator()}
-          >
-            <span
-              className={
-                active === page + 1 ? "custom-pagination-active" : "text-muted"
-              }
-              name={page + 1}
-            >
-              {page + 1}
-            </span>
-          </button>
-        ))}
-    </div>
+    <ReactPaginate
+      previousLabel="previous"
+      previousClassName="text-muted"
+      nextLabel="next"
+      nextClassName="text-muted"
+      breakLabel="..."
+      breakClassName="text-muted"
+      pageCount={pageCount}
+      pageClassName="text-muted"
+      initialPage={active - 1}
+      marginPagesDisplayed={marginPagesDisplayed}
+      pageRangeDisplayed={pageRangeDisplayed}
+      onPageChange={handlePageChange}
+      containerClassName="custom-pagination"
+      activeClassName="custom-pagination-active"
+      disabledClassName="custom-pagination-disabled"
+    />
   );
 };
 

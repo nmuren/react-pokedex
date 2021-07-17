@@ -53,14 +53,31 @@ h6 {
 }
 
 .custom-pagination {
-  button {
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+
+  li {
+    display: inline-block;
     border: none;
     background: none;
     min-width: 2.5rem;
     padding: 0 0.5rem;
-    .custom-pagination-active {
-      padding: 0 0.5rem;
-      border-bottom: 0.1rem solid $primary-text-color;
+  }
+
+  .custom-pagination-active {
+    padding: 0 0.5rem;
+    border-bottom: 0.1rem solid $primary-text-color;
+  }
+
+  .custom-pagination-disabled {
+    cursor: not-allowed;
+    a {
+      cursor: not-allowed;
     }
   }
 }
