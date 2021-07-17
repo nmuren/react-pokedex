@@ -1,11 +1,9 @@
 $primary-font: "Poppins", Verdana, sans-serif;
 $secondary-font: Georgia, Times, serif;
 $primary-text-color: #000000;
-$secondary-text-color: #7f8c8d;
 $bootstrap-text-color: #212529;
 $primary-color: #ffffff;
 $secondary-color: #f6f7fb;
-$tertiary-color: #37bd9cff;
 
 body {
   margin: 0;
@@ -26,10 +24,6 @@ h6 {
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-}
-
-.black-text {
-  color: $primary-text-color;
 }
 
 .text-medium {
