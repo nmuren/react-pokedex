@@ -29,6 +29,7 @@ const Pagination = ({
       pageCount={pageCount}
       pageClassName="text-muted"
       initialPage={active - 1}
+      forcePage={active - 1}
       marginPagesDisplayed={marginPagesDisplayed}
       pageRangeDisplayed={pageRangeDisplayed}
       onPageChange={handlePageChange}

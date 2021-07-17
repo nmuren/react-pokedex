@@ -3,12 +3,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import PokemonDetail from "views/content/PokemonDetail";
 import PokemonFavorites from "views/content/PokemonFavorites";
-import PokemonListContainer from "views/content/PokemonListContainer";
+import PokemonList from "views/content/PokemonList";
 
 const Routes = () => (
   <Switch>
     <Route path="/" exact>
-      <PokemonListContainer />
+      <PokemonList />
     </Route>
     <Route path="/pokemon/:pokemonId">
       <PokemonDetail />

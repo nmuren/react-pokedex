@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import { observer } from "mobx-react-lite";
 
 import { getPokemonsList } from "service/pokemon";
-import { keyGenerator } from "utils/commonUtils";
+import { isArrayContains, keyGenerator } from "utils/commonUtils";
 import Pagination from "components/Pagination";
 import PokemonCard from "views/content/PokemonCard";
 import { MainContext } from "store/MainStore";
@@ -19,21 +19,42 @@ const PokemonList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getPokemonsList({
+    // currently there are no available search
+    // queries hence client-side filter applied
+    const criteria = !store.searchKey && {
       offset: (active - 1) * store.itemPerPage,
       limit: store.itemPerPage,
-    })
+    };
+    getPokemonsList(criteria)
       .then(({ results, count }) => {
         results.forEach((element) => {
           const url = element.url.split("/");
           element.id = Number(url[url.length - 2]);
         });
-        setData(results);
-        setTotalCount(count);
+
+        let viewData = [];
+        let viewDataCount = [];
+
+        if (store.searchKey) {
+          viewData = results.filter(({ name, id }) =>
+            isArrayContains(store.searchKey, [name, id])
+          );
+          viewDataCount = viewData.length;
+        } else {
+          viewData = results;
+          viewDataCount = count;
+        }
+
+        setData(viewData);
+        setTotalCount(viewDataCount);
         setIsLoading(false);
       })
       .catch(console.error);
-  }, [active, store.itemPerPage]);
+  }, [active, store.itemPerPage, store.searchKey]);
+
+  useEffect(() => {
+    setActive(1);
+  }, [store.searchKey]);
 
   return (
     <>
@@ -42,7 +63,13 @@ const PokemonList = () => {
       ) : (
         <Row>
           {data.length > 0 ? (
-            data.map((item) => (
+            (store.searchKey
+              ? data.slice(
+                  (active - 1) * store.itemPerPage,
+                  active * store.itemPerPage
+                )
+              : data
+            ).map((item) => (
               <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
             ))
           ) : (
