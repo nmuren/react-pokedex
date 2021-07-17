@@ -22,6 +22,12 @@ h6 {
   font-family: $secondary-font;
 }
 
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
 .black-text {
   color: $primary-text-color;
 }
