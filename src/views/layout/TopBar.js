@@ -19,73 +19,53 @@ const TopBar = () => {
   const history = useHistory();
 
   return (
-    <Row className="pt-3">
-      <Col sm={12} md={4}>
+    <Row className="pt-3 gap-2">
+      <Col md={12} lg={6} className="h-100 d-flex gap-2">
+        <Link
+          to="/"
+          className="btn topbar-button"
+          onClick={() => {
+            history.push(pathname);
+          }}
+        >
+          <img src={doubleLeftIcon} alt="go main" width="30" className="mx-1" />
+          <span>Go to main</span>
+        </Link>
+
+        <div
+          className="btn topbar-button"
+          onClick={() => {
+            history.goBack();
+            history.push(pathname);
+          }}
+        >
+          <img src={leftIcon} alt="go back" width="30" className="mx-1" />
+          <span>Go back</span>
+        </div>
+
         {pathname !== "/myPokemons" ? (
           <Link
             to="/myPokemons"
-            className="h-100 btn d-flex justify-content-center align-items-center topbar-button"
+            className="btn topbar-button"
             onClick={() => {
               history.push(pathname);
             }}
           >
-            <img
-              src={favoriteFilled}
-              alt="my pokemons"
-              width="40"
-              height="40"
-            />{" "}
+            <img src={favoriteFilled} alt="my pokemons" width="30" />{" "}
             <span>My Pokémons</span>
           </Link>
         ) : (
-          <div className="h-100 d-flex gap-2">
-            <Link
-              to="/"
-              className=" w-100 btn d-flex justify-content-center align-items-center topbar-button"
-              onClick={() => {
-                history.push(pathname);
-              }}
-            >
-              <img
-                src={doubleLeftIcon}
-                alt="go main"
-                width="30"
-                className="mx-1"
-              />
-              <span>Go to main</span>
-            </Link>
-
-            <div
-              className=" w-100 btn d-flex justify-content-center align-items-center topbar-button"
-              onClick={() => {
-                history.goBack();
-                history.push(pathname);
-              }}
-            >
-              <img src={leftIcon} alt="go back" width="30" className="mx-1" />
-              <span>Go back</span>
+          store.favoritePokemons.length > 0 && (
+            <div onClick={store.clearFavorites} className="btn topbar-button">
+              <img src={remove} alt="clear favorites" width="30" />{" "}
+              <span>Clear all</span>
             </div>
-
-            {store.favoritePokemons.length > 0 && (
-              <div
-                onClick={store.clearFavorites}
-                className=" w-100 btn d-flex justify-content-center align-items-center topbar-button"
-              >
-                <img
-                  src={remove}
-                  alt="clear favorites"
-                  width="30"
-                  height="30"
-                />{" "}
-                <span>Clear all</span>
-              </div>
-            )}
-          </div>
+          )
         )}
       </Col>
-      <Col className="d-flex justify-content-end ">
+      <Col className="d-flex justify-content-end gap-2">
         <DropdownCard
-          className="mx-4 p-2"
+          className="p-2"
           text="Items:"
           value={store.itemPerPage}
           itemList={ITEM_PER_PAGE_LIST}
@@ -93,18 +73,14 @@ const TopBar = () => {
             store.setValue("itemPerPage", event.target.innerText);
           }}
         />
-        {pathname !== "/myPokemons" ? (
-          <SearchBox
-            className="p-2"
-            onSearchChanged={(searchKey) => {
-              store.setValue("searchKey", searchKey);
-            }}
-            value={store.searchKey}
-            placeholder="Pokemon ID or Name..."
-          />
-        ) : (
-          <></>
-        )}
+        <SearchBox
+          className="p-2"
+          onSearchChanged={(searchKey) => {
+            store.setValue("searchKey", searchKey);
+          }}
+          value={store.searchKey}
+          placeholder="Pokemon ID or Name..."
+        />
       </Col>
     </Row>
   );
