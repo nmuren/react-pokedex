@@ -18,49 +18,54 @@ const TopBar = () => {
   const { pathname } = useLocation();
   const history = useHistory();
 
+  const handleRoute = () => {
+    history.push(pathname);
+  };
+
   return (
     <Row className="pt-3 gap-2">
       <Col md={12} lg={6} className="h-100 d-flex gap-2">
-        <Link
-          to="/"
-          className="btn topbar-button"
-          onClick={() => {
-            history.push(pathname);
-          }}
-        >
-          <img src={doubleLeftIcon} alt="go main" width="30" className="mx-1" />
-          <span>Go to main</span>
-        </Link>
+        {pathname !== "/" && (
+          <>
+            <Link to="/" className="btn topbar-button" onClick={handleRoute}>
+              <img
+                src={doubleLeftIcon}
+                alt="go main"
+                width="30"
+                className="mx-1"
+              />
+              <span>Go to main</span>
+            </Link>
 
-        <div
-          className="btn topbar-button"
-          onClick={() => {
-            history.goBack();
-            history.push(pathname);
-          }}
-        >
-          <img src={leftIcon} alt="go back" width="30" className="mx-1" />
-          <span>Go back</span>
-        </div>
+            <div
+              className="btn topbar-button"
+              onClick={() => {
+                history.goBack();
+                handleRoute();
+              }}
+            >
+              <img src={leftIcon} alt="go back" width="30" className="mx-1" />
+              <span>Go back</span>
+            </div>
+          </>
+        )}
 
-        {pathname !== "/myPokemons" ? (
-          <Link
-            to="/myPokemons"
-            className="btn topbar-button"
-            onClick={() => {
-              history.push(pathname);
-            }}
-          >
-            <img src={favoriteFilled} alt="my pokemons" width="30" />{" "}
-            <span>My Pokémons</span>
-          </Link>
-        ) : (
+        {pathname === "/myPokemons" ? (
           store.favoritePokemons.length > 0 && (
             <div onClick={store.clearFavorites} className="btn topbar-button">
               <img src={remove} alt="clear favorites" width="30" />{" "}
               <span>Clear all</span>
             </div>
           )
+        ) : (
+          <Link
+            to="/myPokemons"
+            className="btn topbar-button"
+            onClick={handleRoute}
+          >
+            <img src={favoriteFilled} alt="my pokemons" width="30" />{" "}
+            <span>My Pokémons</span>
+          </Link>
         )}
       </Col>
       <Col className="d-flex justify-content-end gap-2">
