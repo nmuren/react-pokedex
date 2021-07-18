@@ -12,11 +12,15 @@ const PokemonAbilities = ({ pokemon = {} }) => {
         <Card className="h-100 styled-card">
           <Card.Title className="pt-3 px-3">Top Moves</Card.Title>
           <Card.Body>
-            <ul>
-              {pokemon.moves.slice(0, 4).map(({ move: { name } }) => (
-                <li key={name}>{readableTextFormat(name)}</li>
-              ))}
-            </ul>
+            {pokemon.moves.length > 0 ? (
+              <ul>
+                {pokemon.moves.slice(0, 4).map(({ move: { name } }) => (
+                  <li key={name}>{readableTextFormat(name)}</li>
+                ))}
+              </ul>
+            ) : (
+              <i>No moves found</i>
+            )}
           </Card.Body>
         </Card>
       </Col>
@@ -24,11 +28,15 @@ const PokemonAbilities = ({ pokemon = {} }) => {
         <Card className="h-100 styled-card">
           <Card.Title className="pt-3 px-3">Abilities</Card.Title>
           <Card.Body>
-            <ul>
-              {pokemon.abilities.slice(0, 4).map(({ ability: { name } }) => (
-                <li key={name}>{readableTextFormat(name)}</li>
-              ))}
-            </ul>
+            {pokemon.abilities.length > 0 ? (
+              <ul>
+                {pokemon.abilities.slice(0, 4).map(({ ability: { name } }) => (
+                  <li key={name}>{readableTextFormat(name)}</li>
+                ))}
+              </ul>
+            ) : (
+              <i>No abilities found</i>
+            )}
           </Card.Body>
         </Card>
       </Col>
@@ -47,9 +55,13 @@ const PokemonAbilities = ({ pokemon = {} }) => {
             <span>Weight: {pokemon.weight / 10}kg</span>
             <span>
               Forms:{" "}
-              {pokemon.forms.map(
-                ({ name }, index) =>
-                  `${index > 0 ? ", " : ""}${readableTextFormat(name)}`
+              {pokemon.forms.length > 0 ? (
+                pokemon.forms.map(
+                  ({ name }, index) =>
+                    `${index > 0 ? ", " : ""}${readableTextFormat(name)}`
+                )
+              ) : (
+                <i>None</i>
               )}
             </span>
           </Card.Body>

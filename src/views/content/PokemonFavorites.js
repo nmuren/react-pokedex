@@ -30,7 +30,9 @@ const PokemonFavorites = () => {
               <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
             ))
         ) : (
-          <Col className="mt-4">No favorites yet...</Col>
+          <Col className="mt-4">
+            <i>No favorites yet...</i>
+          </Col>
         )}
       </Row>
 
