@@ -101,16 +101,19 @@ h6 {
 }
 
 .custom-dropdown {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5rem;
-  #dropdown-toggle {
-    color: $bootstrap-text-color;
-    border: 1.5px solid $secondary-color;
-    background-color: $secondary-color;
-    height: 3rem;
-    &:focus {
-      box-shadow: none;
+  min-width: auto;
+  .card-body {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    #dropdown-toggle {
+      color: $bootstrap-text-color;
+      border: 1.5px solid $secondary-color;
+      background-color: $secondary-color;
+      height: 3rem;
+      &:focus {
+        box-shadow: none;
+      }
     }
   }
 }

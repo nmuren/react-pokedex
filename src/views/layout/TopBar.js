@@ -84,7 +84,7 @@ const TopBar = () => {
             store.setValue("searchKey", searchKey);
           }}
           value={store.searchKey}
-          placeholder="Pokemon ID or Name..."
+          placeholder="Pokémon ID or Name..."
         />
       </Col>
     </Row>

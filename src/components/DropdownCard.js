@@ -11,8 +11,8 @@ const DropdownCard = ({
   onClick = () => {},
 }) => {
   return (
-    <Card className={className}>
-      <Card.Body className="custom-dropdown p-0">
+    <Card className={`custom-dropdown ${className}`}>
+      <Card.Body className="p-0">
         {text}
         <Dropdown>
           <Dropdown.Toggle id="dropdown-toggle">{value}</Dropdown.Toggle>
