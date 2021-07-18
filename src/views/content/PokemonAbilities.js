@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 
 import { readableTextFormat } from "utils/commonUtils";
 
-const PokemonAbilities = ({ pokemon = {}, pokemonVariant }) => {
+const PokemonAbilities = ({ pokemon = {} }) => {
   return (
     <Row className="mt-2 abilities-row">
       <Col sm={12} md={4}>
