@@ -9,7 +9,7 @@ const PokemonAbilities = ({ pokemon = {}, pokemonVariant }) => {
   return (
     <Row className="mt-2 abilities-row">
       <Col sm={12} md={4}>
-        <Card className="h-100">
+        <Card className="h-100 styled-card">
           <Card.Title className="pt-3 px-3">Top Moves</Card.Title>
           <Card.Body>
             <ul>
@@ -21,7 +21,7 @@ const PokemonAbilities = ({ pokemon = {}, pokemonVariant }) => {
         </Card>
       </Col>
       <Col sm={12} md={4}>
-        <Card className="h-100">
+        <Card className="h-100 styled-card">
           <Card.Title className="pt-3 px-3">Abilities</Card.Title>
           <Card.Body>
             <ul>
@@ -33,7 +33,7 @@ const PokemonAbilities = ({ pokemon = {}, pokemonVariant }) => {
         </Card>
       </Col>
       <Col sm={12} md={4}>
-        <Card className="h-100">
+        <Card className="h-100 styled-card">
           <Card.Title className="pt-3 px-3">Characteristics</Card.Title>
           <Card.Body className="d-flex flex-column">
             <span>

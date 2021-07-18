@@ -14,7 +14,7 @@ const PokemonStats = ({ pokemon = {}, pokemonVariant }) => {
   const store = useContext(MainContext);
 
   return (
-    <Card className="w-100 mt-3">
+    <Card className="w-100 mt-3 styled-card">
       <Card.Header className="d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-end">
           <span className="text-muted text-medium mx-1 ">
