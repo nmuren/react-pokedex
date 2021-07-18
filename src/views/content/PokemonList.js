@@ -63,12 +63,12 @@ const PokemonList = () => {
       ) : (
         <Row>
           {data.length > 0 ? (
-            (store.searchKey
-              ? data.slice(
+            (data.length <= store.itemPerPage
+              ? data
+              : data.slice(
                   (active - 1) * store.itemPerPage,
                   active * store.itemPerPage
                 )
-              : data
             ).map((item) => (
               <PokemonCard pokemon={item} key={item.id || keyGenerator()} />
             ))
