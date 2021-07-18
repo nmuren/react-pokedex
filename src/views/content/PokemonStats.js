@@ -45,7 +45,6 @@ const PokemonStats = ({ pokemon = {}, pokemonVariant }) => {
               src={getImageSource(pokemon.id)}
               alt={pokemon.name || "pokemon image"}
               height="250"
-              className="w-100"
             />
           </Col>
           <Col sm={12} md={6} lg={8}>
