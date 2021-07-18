@@ -3,7 +3,7 @@ import {
   POKEMON_COLOR_RED,
   POKEMON_COLOR_TURQUOISE,
   POKEMON_COLOR_YELLOW,
-} from "contants/typeContants";
+} from "constants/typeConstants";
 
 export const getPokemonVariant = (type) => {
   if (POKEMON_COLOR_GREEN.includes(type)) return "success";

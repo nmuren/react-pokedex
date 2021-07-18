@@ -13,7 +13,7 @@ const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
         history.push(pathname);
       }}
     >
-      <Card className="h-100">
+      <Card className="h-100 styled-card">
         <Card.Img
           variant="top"
           src={img}
@@ -21,7 +21,9 @@ const StyledCard = ({ url = "", img = "", title = "", text = "" }) => {
         />
         <Card.Body>
           <Card.Title className="mb-3">
-            <span className="text-muted text-medium mx-1 ">{text}</span>
+            <span className="text-muted text-medium font-impose mx-1">
+              {text}
+            </span>
             {title}
           </Card.Title>
         </Card.Body>

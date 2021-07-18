@@ -4,6 +4,9 @@ $primary-text-color: #000000;
 $bootstrap-text-color: #212529;
 $primary-color: #ffffff;
 $secondary-color: #f6f7fb;
+$primary-theme-color: #ffde00;
+$secondary-theme-color: #ff0000;
+$tertiary-theme-color: #3b4cca;
 
 body {
   margin: 0;
@@ -16,7 +19,12 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h6 {
   font-family: $secondary-font;
 }
 
@@ -30,13 +38,21 @@ h6 {
   font-size: medium;
 }
 
+.font-impose {
+  font-family: $primary-font !important;
+}
+
 .sized-img {
   width: 200px;
   height: 200px;
 }
 
 .content {
-  background-color: $secondary-color;
+  background-color: $primary-theme-color;
+}
+
+.topbar .card {
+  border-color: $secondary-theme-color;
 }
 
 .pokemon-card {
@@ -70,6 +86,7 @@ h6 {
   }
 
   .custom-pagination-active {
+    color: $primary-text-color !important;
     padding: 0 0.5rem;
     border-bottom: 0.1rem solid $primary-text-color;
   }
@@ -118,13 +135,17 @@ h6 {
   }
 }
 
+.styled-card {
+  border-color: $tertiary-theme-color !important;
+}
+
 .abilities-row {
   row-gap: 0.5rem;
 }
 
 .topbar-button {
   background-color: $primary-color;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid $secondary-theme-color;
   border-radius: 0.25rem;
   display: flex;
   justify-content: center;

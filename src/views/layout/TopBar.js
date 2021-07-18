@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { MainContext } from "store/MainStore";
-import { ITEM_PER_PAGE_LIST } from "contants/listContants";
+import { ITEM_PER_PAGE_LIST } from "constants/listConstants";
 import DropdownCard from "components/DropdownCard";
 import SearchBox from "components/SearchBox";
 import favoriteFilled from "assets/img/favorite-filled-icon.png";
@@ -23,7 +23,7 @@ const TopBar = () => {
   };
 
   return (
-    <Row className="pt-3 gap-2">
+    <Row className="pt-3 gap-2 topbar">
       <Col md={12} lg={6} className="h-100 d-flex gap-2">
         {pathname !== "/" && (
           <>
